@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "region": "IN",
+    "year": 2025,
+    "version": "1.0.0",
+    "description": "Indian baseline emission factors for 2025. Includes historical grid factors and biological sequestration baselines."
+  },
+  "GWP_100": {
+    "CO2": 1,
+    "CH4": 28,
+    "N2O": 265,
+    "HFC": 1000
+  },
+  "Factors": {
+    "Travel": {
+      "Petrol_Car": { "factor": 0.12, "unit": "km", "gasAllocation": { "CO2": 0.98, "CH4": 0.01, "N2O": 0.01 } },
+      "Diesel_Car": { "factor": 0.14, "unit": "km", "gasAllocation": { "CO2": 0.97, "CH4": 0.01, "N2O": 0.02 } },
+      "Two_Wheeler": { "factor": 0.05, "unit": "km", "gasAllocation": { "CO2": 0.99, "CH4": 0.005, "N2O": 0.005 } },
+      "Public_Bus": { "factor": 0.03, "unit": "km", "gasAllocation": { "CO2": 0.96, "CH4": 0.01, "N2O": 0.03 } }
+    },
+    "Electricity": {
+      "Indian_Grid": { "factor": 0.85, "unit": "kWh", "gasAllocation": { "CO2": 0.99, "CH4": 0.002, "N2O": 0.008 } }
+    },
+    "Fossil": {
+      "LPG_Cooking": { "factor": 2.98, "unit": "kg", "gasAllocation": { "CO2": 0.95, "CH4": 0.04, "N2O": 0.01 } }
+    },
+    "Waste": {
+      "Landfill": { "factor": 1.5, "unit": "kg", "gasAllocation": { "CO2": 0.10, "CH4": 0.90, "N2O": 0.00 } }
+    },
+    "Water": {
+      "Municipal_Supply": { "factor": 0.0003, "unit": "liters", "gasAllocation": { "CO2": 1.0, "CH4": 0.0, "N2O": 0.0 } }
+    },
+    "Fugitive": {
+      "AC_Refrigerant_Leak": { "factor": 1.0, "unit": "kg", "gasAllocation": { "CO2": 0, "CH4": 0, "N2O": 0, "HFC": 1.0 } }
+    }
+  },
+  "Sequestration": {
+    "Tree_Mature": { "factor": 21.77, "unit": "kg CO2e/year per tree" },
+    "Soil_Carbon": { "factor": 0.44, "unit": "kg CO2e/year per m2" },
+    "Grass_Cover": { "factor": 0.12, "unit": "kg CO2e/year per m2" },
+    "Water_Body": { "factor": 0.20, "unit": "kg CO2e/year per m2" }
+  }
+}

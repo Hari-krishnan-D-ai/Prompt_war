@@ -1,0 +1,166 @@
+/* ─── Tailwind base layers ─────────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts fallback (loaded in index.html via <link>) ───────────── */
+@layer base {
+  :root {
+    --color-accent:     #059669; /* emerald-600 */
+    --color-accent-fg:  #ffffff;
+    --color-bg:         #f0fdf4; /* emerald-50  */
+    --color-surface:    #ffffff;
+    --color-border:     #d1fae5; /* emerald-100 */
+    --color-text:       #064e3b; /* emerald-950 */
+    --color-text-muted: #6ee7b7; /* emerald-300 */
+
+    --sidebar-w: 240px;
+    --header-h:  56px;
+  }
+
+  /* ── Zero-Gravity theme — applied when total CO2e < 0 ─────────────────── */
+  [data-theme="zero-gravity"] {
+    --color-accent:     #0ea5e9; /* zg-500       */
+    --color-accent-fg:  #082f49; /* zg-950       */
+    --color-bg:         #082f49; /* zg-950       */
+    --color-surface:    #0c4a6e; /* zg-900       */
+    --color-border:     #0369a1; /* zg-700       */
+    --color-text:       #e0f2fe; /* zg-100       */
+    --color-text-muted: #38bdf8; /* zg-400       */
+  }
+
+  html, body {
+    @apply h-full antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.8s ease, color 0.6s ease;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  /* Smooth scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a7f3d0 transparent;
+  }
+  *::-webkit-scrollbar       { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb { background-color: #a7f3d0; border-radius: 999px; }
+
+  [data-theme="zero-gravity"] * {
+    scrollbar-color: #0ea5e9 transparent;
+  }
+  [data-theme="zero-gravity"] *::-webkit-scrollbar-thumb {
+    background-color: #0ea5e9;
+  }
+}
+
+/* ─── Component layer ───────────────────────────────────────────────────── */
+@layer components {
+  /* Card surface */
+  .card {
+    @apply rounded-2xl border bg-white/80 shadow-sm backdrop-blur-sm;
+    border-color: var(--color-border);
+    transition: border-color 0.6s ease, background-color 0.6s ease;
+  }
+
+  [data-theme="zero-gravity"] .card {
+    @apply bg-zg-900/80 border-zg-700;
+  }
+
+  /* KPI number */
+  .kpi-value {
+    @apply text-3xl font-bold tabular-nums tracking-tight animate-count-up;
+  }
+
+  /* Emission severity row tints — applied programmatically */
+  .row-low    { @apply bg-emerald-50/60; }
+  .row-medium { @apply bg-amber-50/60 animate-alert-flash; }
+  .row-high   { @apply bg-rose-50/60 animate-alert-flash; }
+
+  /* Eco-positive flash on new entry */
+  .eco-saved  { @apply animate-eco-pulse rounded-xl; }
+
+  /* Nav link base + active state */
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150;
+    color: var(--color-text-muted);
+  }
+  .nav-link:hover {
+    @apply bg-emerald-100/60;
+    color: var(--color-text);
+  }
+  .nav-link.active {
+    @apply bg-emerald-600 text-white shadow-md;
+  }
+
+  [data-theme="zero-gravity"] .nav-link:hover {
+    @apply bg-zg-800/60;
+  }
+  [data-theme="zero-gravity"] .nav-link.active {
+    @apply bg-zg-500 text-zg-950;
+  }
+
+  /* Form input base */
+  .field-input {
+    @apply w-full rounded-lg border border-emerald-200 bg-white px-3 py-2 text-sm text-emerald-950
+           placeholder:text-emerald-400 focus:border-emerald-500 focus:outline-none
+           focus:ring-2 focus:ring-emerald-200 disabled:cursor-not-allowed disabled:bg-emerald-50
+           transition-shadow duration-150;
+  }
+
+  [data-theme="zero-gravity"] .field-input {
+    @apply border-zg-600 bg-zg-900 text-zg-100 placeholder:text-zg-600
+           focus:border-zg-400 focus:ring-zg-800;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2 text-sm font-semibold
+           text-white transition hover:bg-emerald-700 focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2
+           disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  [data-theme="zero-gravity"] .btn-primary {
+    @apply bg-zg-500 text-zg-950 hover:bg-zg-400;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg border border-emerald-200 px-4 py-2 text-sm
+           font-medium text-emerald-700 transition hover:bg-emerald-50
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400
+           focus-visible:ring-offset-2;
+  }
+
+  /* Tab button */
+  .tab-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-150;
+  }
+  .tab-btn.active {
+    @apply bg-emerald-600 text-white shadow;
+  }
+  .tab-btn:not(.active) {
+    @apply text-emerald-700 hover:bg-emerald-100;
+  }
+}
+
+/* ─── Utility layer additions ───────────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Gradient text for hero KPI in zero-gravity mode */
+  .gradient-text-zg {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #00d4ff, #0ea5e9, #38bdf8);
+  }
+
+  /* Glow ring for the net-negative total */
+  .ring-zg-glow {
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.35), 0 0 20px 4px rgba(0, 170, 255, 0.25);
+  }
+}

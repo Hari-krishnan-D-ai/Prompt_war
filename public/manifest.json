@@ -1,0 +1,18 @@
+{
+  "name": "Carbon Ledger",
+  "short_name": "CarbonLedger",
+  "description": "Individual Carbon Accounting Engine — 100% free, local-first CO2-e tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
